@@ -1,0 +1,680 @@
+tabla=$('#tbllistado').dataTable(
+	{
+		"aProcessing": true,//Activamos el procesamiento del datatables
+	    "aServerSide": true,//Paginaci�n y filtrado realizados por el servidor
+	    dom: 'Bfrtip',//Definimos los elementos del control de tabla
+	    buttons: [		          
+		            'copyHtml5',
+		            'excelHtml5',
+		            'csvHtml5',
+		            'pdf'
+		        ],
+		"ajax":
+				{
+					url: 'controlador/pedidoconfirmado.php?op=listar',
+					type : "get",
+					dataType : "json",						
+					error: function(e){
+						console.log(e.responseText);	
+					}
+				},
+		"bDestroy": true,
+		"iDisplayLength": 100,//Paginaci�n
+	    "order": [[ 0, "desc" ]]//Ordenar (columna,orden)
+	}).DataTable();
+    function ver(idpedido) {
+        $.post("controlador/pedidoconfirmado.php?op=ver",{idpedido : idpedido}, function(data, status)
+	{
+        data = JSON.parse(data);
+        if (data.tipodepedido==true) {
+            $("#tablahome").show();
+            $("#tablageneral").hide();
+            $("#tablatelmex").hide();
+            $("#tablashein").hide();
+            
+            $("#comisionista").html(data.comisionista);
+            $("#nombre").html(data.nombre);
+            $("#materno").html(data.materno);
+            $("#paterno").html(data.paterno);
+            $("#telefono").html(data.telefono);
+            $("#tienda").html(data.tienda);
+            $("#ciudad").html(data.ciudad);
+            $("#estado").html(data.estado);
+            $("#link1").html(data.link1);
+            $("#art1").html(data.art1);
+            $("#link2").html(data.link2);
+            $("#art2").html(data.art2);
+            $("#link3").html(data.link3);
+            $("#art3").html(data.art3);
+            $("#link4").html(data.link4);
+            $("#art4").html(data.art4);
+            $("#link5").html(data.link5);
+            $("#art5").html(data.art5);
+            $("#link6").html(data.link6);
+            $("#art6").html(data.art6);
+            $("#link7").html(data.link7);
+            $("#art7").html(data.art7);
+            $("#link8").html(data.link8);
+            $("#art8").html(data.art8);
+            $("#link9").html(data.link9);
+            $("#art9").html(data.art9);
+            $("#link10").html(data.link10);
+            $("#art10").html(data.art10);
+            $("#monto").html("$ "+data.monto);
+
+            var imagen=data.imagen;
+            var imagen2=data.imagen2;
+            var imagen3=data.imagen3;
+            var imagen4=data.imagen4;
+            var imagen5=data.imagen5;
+
+            if (data.imagen==null || data.imagen=='') {
+                 imagen='null.png';
+            }
+            if (data.imagen2==null || data.imagen2=='') {
+                 imagen2='null.png';
+            }
+            if (data.imagen3==null || data.imagen3=='') {
+                 imagen3='null.png';
+            }
+            if (data.imagen4==null || data.imagen4=='') {
+                 imagen4='null.png';
+            }
+            if (data.imagen5==null || data.imagen5=='') {
+                 imagen5='null.png';
+            }
+            $("#imagen").attr("src","files/img/"+imagen);
+            $("#imagen2").attr("src","files/img/"+imagen2);
+            $("#imagen3").attr("src","files/img/"+imagen3);
+            $("#imagen4").attr("src","files/img/"+imagen4);
+            $("#imagen5").attr("src","files/img/"+imagen5);
+            $("#imagena").attr("href","files/img/"+imagen);
+            $("#imagena2").attr("href","files/img/"+imagen2);
+            $("#imagena3").attr("href","files/img/"+imagen3);
+            $("#imagena4").attr("href","files/img/"+imagen4);
+            $("#imagena5").attr("href","files/img/"+imagen5);
+        } if (data.tipodepedido==0) {
+            $("#tablageneral").show();
+            $("#tablahome").hide();
+            $("#tablatelmex").hide();
+            $("#tablashein").hide();
+            
+            $("#comisionistag").html(data.comisionista);
+            $("#nombreg").html(data.nombre);
+            $("#maternog").html(data.materno);
+            $("#paternog").html(data.paterno);
+            $("#telefonog").html(data.telefono);
+            $("#calle").html(data.calle);
+            $("#ciudadg").html(data.ciudad);
+            $("#estadog").html(data.estado);
+            $("#noexterior").html(data.noexterior);
+            $("#nointerior").html(data.nointerior);
+            $("#colonia").html(data.colonia);
+            $("#cp").html(data.cp);
+            $("#municipio").html(data.municipio);
+            $("#entrecalle").html(data.entrecalle);
+            $("#ycalle").html(data.ycalle);
+            $("#especificaciones").html(data.especificaciones);
+            $("#montog").html("$ "+data.monto);
+
+            var imagen=data.imagen;
+            var imagen2=data.imagen2;
+            var imagen3=data.imagen3;
+            var imagen4=data.imagen4;
+            var imagen5=data.imagen5;
+
+            if (data.imagen==null || data.imagen=='') {
+                 imagen='null.png';
+            }
+            if (data.imagen2==null || data.imagen2=='') {
+                 imagen2='null.png';
+            }
+            if (data.imagen3==null || data.imagen3=='') {
+                 imagen3='null.png';
+            }
+            if (data.imagen4==null || data.imagen4=='') {
+                 imagen4='null.png';
+            }
+            if (data.imagen5==null || data.imagen5=='') {
+                 imagen5='null.png';
+            }
+
+            $("#imageng").attr("src","files/img/"+imagen);
+            $("#imagen2g").attr("src","files/img/"+imagen2);
+            $("#imagen3g").attr("src","files/img/"+imagen3);
+            $("#imagen4g").attr("src","files/img/"+imagen4);
+            $("#imagen5g").attr("src","files/img/"+imagen5);
+            $("#imagenag").attr("href","files/img/"+imagen);
+            $("#imagena2g").attr("href","files/img/"+imagen2);
+            $("#imagena3g").attr("href","files/img/"+imagen3);
+            $("#imagena4g").attr("href","files/img/"+imagen4);
+            $("#imagena5g").attr("href","files/img/"+imagen5);
+        }
+        if (data.tipodepedido==2) {
+          $("#tablageneral").hide();
+          $("#tablahome").hide();
+          $("#tablatelmex").show();
+          $("#tablashein").hide();
+          
+          $("#comisionistat").html(data.comisionista);
+          $("#emailt").html(data.email);
+          $("#telefonot").html(data.telefono);
+          $("#contrasenat").html(data.contrasena);
+          $("#montot").html("$ "+data.monto);
+
+          var imagen=data.imagen;
+          var imagen2=data.imagen2;
+          var imagen3=data.imagen3;
+          var imagen4=data.imagen4;
+          var imagen5=data.imagen5;
+
+          if (data.imagen==null || data.imagen=='') {
+               imagen='null.png';
+          }
+          if (data.imagen2==null || data.imagen2=='') {
+               imagen2='null.png';
+          }
+          if (data.imagen3==null || data.imagen3=='') {
+               imagen3='null.png';
+          }
+          if (data.imagen4==null || data.imagen4=='') {
+               imagen4='null.png';
+          }
+          if (data.imagen5==null || data.imagen5=='') {
+               imagen5='null.png';
+          }
+
+          $("#imagent").attr("src","files/img/"+imagen);
+          $("#imagen2t").attr("src","files/img/"+imagen2);
+          $("#imagen3t").attr("src","files/img/"+imagen3);
+          $("#imagen4t").attr("src","files/img/"+imagen4);
+          $("#imagen5t").attr("src","files/img/"+imagen5);
+          $("#imagenat").attr("href","files/img/"+imagen);
+          $("#imagena2t").attr("href","files/img/"+imagen2);
+          $("#imagena3t").attr("href","files/img/"+imagen3);
+          $("#imagena4t").attr("href","files/img/"+imagen4);
+          $("#imagena5t").attr("href","files/img/"+imagen5);
+        }
+        if (data.tipodepedido==3||data.tipodepedido==4) {
+          $("#tablageneral").hide();
+          $("#tablahome").hide();
+          $("#tablatelmex").hide();
+          $("#tablashein").show();
+          
+          $("#comisionistas").html(data.comisionista);
+          $("#emails").html(data.email);
+          $("#contrasenas").html(data.contrasena);
+          $("#montos").html("$ "+data.monto);
+          $("#nickk").html(data.nickk);
+
+          var imagen=data.imagen;
+          var imagen2=data.imagen2;
+          var imagen3=data.imagen3;
+          var imagen4=data.imagen4;
+          var imagen5=data.imagen5;
+
+          if (data.imagen==null || data.imagen=='') {
+               imagen='null.png';
+          }
+          if (data.imagen2==null || data.imagen2=='') {
+               imagen2='null.png';
+          }
+          if (data.imagen3==null || data.imagen3=='') {
+               imagen3='null.png';
+          }
+          if (data.imagen4==null || data.imagen4=='') {
+               imagen4='null.png';
+          }
+          if (data.imagen5==null || data.imagen5=='') {
+               imagen5='null.png';
+          }
+
+          $("#imagens").attr("src","files/img/"+imagen);
+          $("#imagen2s").attr("src","files/img/"+imagen2);
+          $("#imagen3s").attr("src","files/img/"+imagen3);
+          $("#imagen4s").attr("src","files/img/"+imagen4);
+          $("#imagen5s").attr("src","files/img/"+imagen5);
+          $("#imagenas").attr("href","files/img/"+imagen);
+          $("#imagena2s").attr("href","files/img/"+imagen2);
+          $("#imagena3s").attr("href","files/img/"+imagen3);
+          $("#imagena4s").attr("href","files/img/"+imagen4);
+          $("#imagena5s").attr("href","files/img/"+imagen5);
+        }
+
+ 	});
+        
+    }
+
+    function editar(idpedido) {
+        $.post("controlador/pedidoconfirmado.php?op=editar",{idpedido : idpedido}, function(data, status)
+	{
+        data = JSON.parse(data);
+        if (data.tipodepedido==true){//pedido home
+            $("#contact-formg").hide();
+            $("#contact-formt").hide();
+            $("#contact-forms").hide();
+            $("#contact-form").show();
+
+            $("#titulo").html('Editar Pedido '+data.id);
+            $("#comisionista1").val(data.comisionista);
+            $("#nombre1").val(data.nombre);
+            $("#materno1").val(data.materno);
+            $("#paterno1").val(data.paterno);
+            $("#telefono1").val(data.telefono);
+            $("#tienda1").val(data.tienda);
+            $("#ciudad1").val(data.ciudad);
+            $("#estado1").val(data.estado);
+            $("#link11").val(data.link1);
+            $("#art11").val(data.art1);
+            $("#link21").val(data.link2);
+            $("#art21").val(data.art2);
+            $("#link31").val(data.link3);
+            $("#art31").val(data.art3);
+            $("#link41").val(data.link4);
+            $("#art41").val(data.art4);
+            $("#link51").val(data.link5);
+            $("#art51").val(data.art5);
+            $("#link61").val(data.link6);
+            $("#art61").val(data.art6);
+            $("#link71").val(data.link7);
+            $("#art71").val(data.art7);
+            $("#link81").val(data.link8);
+            $("#art81").val(data.art8);
+            $("#link91").val(data.link9);
+            $("#art91").val(data.art9);
+            $("#link101").val(data.link10);
+            $("#art101").val(data.art10);
+            $("#monto1").val(data.monto);
+
+            var imagen=data.imagen;
+            var imagen2=data.imagen2;
+            var imagen3=data.imagen3;
+            var imagen4=data.imagen4;
+            var imagen5=data.imagen5;
+
+            if (data.imagen==null || data.imagen=='') {
+                imagen='null.png';
+           }
+           if (data.imagen2==null || data.imagen2=='') {
+                imagen2='null.png';
+           }
+           if (data.imagen3==null || data.imagen3=='') {
+                imagen3='null.png';
+           }
+           if (data.imagen4==null || data.imagen4=='') {
+                imagen4='null.png';
+           }
+           if (data.imagen5==null || data.imagen5=='') {
+                imagen5='null.png';
+           }
+
+
+            $("#imagenactual").val(data.imagen);
+            $("#imagenmuestra").attr("src","files/img/"+imagen);
+            
+            $("#imagenactual2").val(data.imagen2);
+            $("#imagenmuestra2").attr("src","files/img/"+imagen2);
+            
+            $("#imagenactual3").val(data.imagen3);
+            $("#imagenmuestra3").attr("src","files/img/"+imagen3);
+            
+            $("#imagenactual4").val(data.imagen4);
+            $("#imagenmuestra4").attr("src","files/img/"+imagen4);
+            
+            $("#imagenactual5").val(data.imagen5);
+            $("#imagenmuestra5").attr("src","files/img/"+imagen5);
+            
+            $(".actualizar").attr("id",data.id);
+        }
+        if (data.tipodepedido==0){//pedido general
+            $("#contact-formg").show();
+            $("#contact-form").hide();
+            $("#contact-formt").hide();
+            $("#contact-forms").hide();
+
+            $("#titulo").html('Editar Pedido '+data.id);
+            $("#comisionista1g").val(data.comisionista);
+            $("#nombre1g").val(data.nombre);
+            $("#materno1g").val(data.materno);
+            $("#paterno1g").val(data.paterno);
+            $("#telefono1g").val(data.telefono);
+            $("#ciudad1g").val(data.ciudad);
+            $("#estado1g").val(data.estado);
+
+            $("#calleg").val(data.calle);
+            $("#noexteriorg").val(data.noexterior);
+            $("#nointeriorg").val(data.nointerior);
+            $("#coloniag").val(data.colonia);
+            $("#cpg").val(data.cp);
+            $("#municipiog").val(data.municipio);
+            $("#entrecalleg").val(data.entrecalle);
+            $("#ycalleg").val(data.ycalle);
+            $("#especificacionesg").val(data.especificaciones);
+            $("#monto1g").val(data.monto);
+
+            var imagen=data.imagen;
+            var imagen2=data.imagen2;
+            var imagen3=data.imagen3;
+            var imagen4=data.imagen4;
+            var imagen5=data.imagen5;
+
+            if (data.imagen==null || data.imagen=='') {
+                imagen='null.png';
+           }
+           if (data.imagen2==null || data.imagen2=='') {
+                imagen2='null.png';
+           }
+           if (data.imagen3==null || data.imagen3=='') {
+                imagen3='null.png';
+           }
+           if (data.imagen4==null || data.imagen4=='') {
+                imagen4='null.png';
+           }
+           if (data.imagen5==null || data.imagen5=='') {
+                imagen5='null.png';
+           }
+
+            $("#imagenactualg").val(data.imagen);
+            $("#imagenmuestrag").attr("src","files/img/"+imagen);
+            
+            $("#imagenactual2g").val(data.imagen2);
+            $("#imagenmuestra2g").attr("src","files/img/"+imagen2);
+            
+            $("#imagenactual3g").val(data.imagen3);
+            $("#imagenmuestra3g").attr("src","files/img/"+imagen3);
+            
+            $("#imagenactual4g").val(data.imagen4);
+            $("#imagenmuestra4g").attr("src","files/img/"+imagen4);
+            
+            $("#imagenactual5g").val(data.imagen5);
+            $("#imagenmuestra5g").attr("src","files/img/"+imagen5);
+            
+            $(".actualizarg").attr("id",data.id);
+        }
+        if (data.tipodepedido==2) {
+          $("#contact-formt").show();
+          $("#contact-form").hide();
+          $("#contact-formg").hide();
+          $("#contact-forms").hide();
+
+          $("#titulo").html('Editar Pedido '+data.id);
+          $("#contrasena").val(data.contrasena);
+          $("#telefono1t").val(data.telefono);
+          $("#email1t").val(data.email);
+          $("#monto1t").val(data.monto);
+
+          var imagen=data.imagen;
+          var imagen2=data.imagen2;
+          var imagen3=data.imagen3;
+          var imagen4=data.imagen4;
+          var imagen5=data.imagen5;
+
+          if (data.imagen==null || data.imagen=='') {
+          imagen='null.png';
+     }
+     if (data.imagen2==null || data.imagen2=='') {
+          imagen2='null.png';
+     }
+     if (data.imagen3==null || data.imagen3=='') {
+          imagen3='null.png';
+     }
+     if (data.imagen4==null || data.imagen4=='') {
+          imagen4='null.png';
+     }
+     if (data.imagen5==null || data.imagen5=='') {
+          imagen5='null.png';
+     }
+
+          $("#imagenactualt").val(data.imagen);
+          $("#imagenmuestrat").attr("src","files/img/"+imagen);
+          
+          $("#imagenactual2t").val(data.imagen2);
+          $("#imagenmuestra2t").attr("src","files/img/"+imagen2);
+          
+          $("#imagenactual3t").val(data.imagen3);
+          $("#imagenmuestra3t").attr("src","files/img/"+imagen3);
+          
+          $("#imagenactual4t").val(data.imagen4);
+          $("#imagenmuestra4t").attr("src","files/img/"+imagen4);
+          
+          $("#imagenactual5t").val(data.imagen5);
+          $("#imagenmuestra5t").attr("src","files/img/"+imagen5);
+          
+          $(".actualizart").attr("id",data.id);
+        }
+        if (data.tipodepedido==3||data.tipodepedido==4) {
+          $("#contact-formt").hide();
+          $("#contact-form").hide();
+          $("#contact-formg").hide();
+          $("#contact-forms").show();
+
+          $("#titulo").html('Editar Pedido '+data.id);
+          $("#contrasenass").val(data.contrasena);
+          $("#email1s").val(data.email);
+          $("#monto1s").val(data.monto);
+          $("#nicks").val(data.nickk);
+
+          var imagen=data.imagen;
+          var imagen2=data.imagen2;
+          var imagen3=data.imagen3;
+          var imagen4=data.imagen4;
+          var imagen5=data.imagen5;
+
+          if (data.imagen==null || data.imagen=='') {
+          imagen='null.png';
+          }
+          if (data.imagen2==null || data.imagen2=='') {
+               imagen2='null.png';
+          }
+          if (data.imagen3==null || data.imagen3=='') {
+               imagen3='null.png';
+          }
+          if (data.imagen4==null || data.imagen4=='') {
+               imagen4='null.png';
+          }
+          if (data.imagen5==null || data.imagen5=='') {
+               imagen5='null.png';
+          }
+
+               $("#imagenactuals").val(data.imagen);
+               $("#imagenmuestras").attr("src","files/img/"+imagen);
+               
+               $("#imagenactual2s").val(data.imagen2);
+               $("#imagenmuestra2s").attr("src","files/img/"+imagen2);
+               
+               $("#imagenactual3s").val(data.imagen3);
+               $("#imagenmuestra3s").attr("src","files/img/"+imagen3);
+               
+               $("#imagenactual4s").val(data.imagen4);
+               $("#imagenmuestra4s").attr("src","files/img/"+imagen4);
+               
+               $("#imagenactual5s").val(data.imagen5);
+               $("#imagenmuestra5s").attr("src","files/img/"+imagen5);
+               
+               $(".actualizars").attr("id",data.id);
+          }
+ 	});
+    }
+    function establecer(idpedido) {
+          $(".modalestablecer").val(idpedido);
+     }
+
+     function verrechazado(idpedido) {
+          $.post("controlador/pedidoconfirmado.php?op=ver",{idpedido : idpedido}, function(data, status)
+          
+          {
+               data = JSON.parse(data);
+          $('#mostrarrechazado').html(data.comentariosrechazado);//MUESTRA MENSAJE DE RECHAZADO AL ADMIN
+          $('#mostrarrechazadocomi').html(data.comentariosrechazado);//muestra mensaje ed rechazadoa comisionista
+          });
+     }
+     function eliminar(idpedido) {
+          $.post("controlador/pedido.php?op=eliminar",{idpedido : idpedido}, function(data, status)
+       {
+            
+          $('#tbllistado').DataTable().ajax.reload();
+        });
+          
+      }
+     function verexitoso(idpedido) {
+          $.post("controlador/pedidoconfirmado.php?op=ver",{idpedido : idpedido}, function(data, status)
+          
+          {
+               data = JSON.parse(data);
+          $("#imagenaexitosoadmin").attr("src","files/img/"+data.imagenexitoso);//muestra imagen al comisionista
+          $("#imagenexitosoadmin").attr("href","files/img/"+data.imagenexitoso);//referencia ala imagen al hacer clic aparece imagen fuente de imagen
+
+          $("#imagencomi").attr("src","files/img/"+data.imagenexitoso);//muestra imagen al comisionista
+          $("#imagenexitosocomi").attr("href","files/img/"+data.imagenexitoso);//referencia ala imagen al hacer clic aparece imagen fuente de imagen
+          });
+     }
+    /* CALIFICAR tipo de pedido*/
+    $("#tipodepedido").change(function(){
+     var tipodepedido = $("#tipodepedido option:selected").val();
+          if (tipodepedido==2) {
+             $("#titulo").html('Ingrese comentarios');
+             $("#contact-form-calificarexitoso").hide();
+             $("#contact-form-calificarrechazado").show();
+          }
+          if (tipodepedido==3) {
+             $("#titulo").html('Adjuntar comprobante');
+             $("#contact-form-calificarexitoso").show();
+             $("#contact-form-calificarrechazado").hide();
+         }
+     });/* end CALIFICAR de pedido*/
+    function entregado(idpedido) {
+        $.post("controlador/pedido.php?op=entregado",{idpedido : idpedido}, function(data, status)
+	{
+		
+        $('#tbllistado').DataTable().ajax.reload();
+ 	});
+    }
+    function cancelarpedido(idpedido) {
+        $.post("controlador/pedido.php?op=cancelarpedido",{idpedido : idpedido}, function(data, status)
+	{
+		
+        $('#tbllistado').DataTable().ajax.reload();
+ 	});
+    }
+
+    $(".actualizarexitoso").click(function() {
+     var idpedidoa=$('.modalestablecer').val();
+
+          $('#contact-form-calificarexitoso').on('submit', function(e){
+          e.preventDefault();
+          $(".actualizar").prop("disabled",true);
+          var formData = new FormData($("#contact-form-calificarexitoso")[0]);
+          $.ajax({
+               url : "controlador/pedidoconfirmado.php?op=actualizarexitoso&idpedidoa="+idpedidoa,
+               method : "POST",
+               data: formData,
+               contentType:false,
+               processData:false,
+               success: function(data){
+                    console.log(data);
+                    location.reload();
+               }
+               })
+          });
+     });
+     $(".actualizarrechazado").click(function() {
+          var idpedidoa=$('.modalestablecer').val();
+
+          $('#contact-form-calificarrechazado').on('submit', function(e){
+          e.preventDefault();
+          $(".actualizar").prop("disabled",true);
+          var formData = new FormData($("#contact-form-calificarrechazado")[0]);
+          $.ajax({
+               url : "controlador/pedidoconfirmado.php?op=actualizarrechazado&idpedidoa="+idpedidoa,
+               method : "POST",
+               data: formData,
+               contentType:false,
+               processData:false,
+               success: function(data){
+                    console.log(data);
+                    location.reload();
+               }
+          })
+          });
+     });
+
+    $(".actualizar").click(function() {
+        var idpedidoa=$(this).attr("id");
+
+        $('#contact-form').on('submit', function(e){
+            e.preventDefault();
+            $(".actualizar").prop("disabled",true);
+            var formData = new FormData($("#contact-form")[0]);
+            $.ajax({
+                url : "controlador/pedidoconfirmado.php?op=actualizar&idpedidoa="+idpedidoa,
+                method : "POST",
+                data: formData,
+                contentType:false,
+                processData:false,
+                success: function(data){
+                    console.log(data);
+                    location.reload();
+                }
+            })
+        });
+    });
+    $(".actualizarg").click(function() {
+        var idpedidoa=$(this).attr("id");
+
+        $('#contact-formg').on('submit', function(e){
+            e.preventDefault();
+            $(".actualizarg").prop("disabled",true);
+            var formData = new FormData($("#contact-formg")[0]);
+            $.ajax({
+                url : "controlador/pedidoconfirmado.php?op=actualizar&idpedidoa="+idpedidoa,
+                method : "POST",
+                data: formData,
+                contentType:false,
+                processData:false,
+                success: function(data){
+                    console.log(data);
+                    location.reload();
+                }
+            })
+        });
+    });
+    $(".actualizart").click(function() {
+     var idpedidoa=$(this).attr("id");
+
+     $('#contact-formt').on('submit', function(e){
+         e.preventDefault();
+         $(".actualizart").prop("disabled",true);
+         var formData = new FormData($("#contact-formt")[0]);
+         $.ajax({
+             url : "controlador/pedidoconfirmado.php?op=actualizar&idpedidoa="+idpedidoa,
+             method : "POST",
+             data: formData,
+             contentType:false,
+             processData:false,
+             success: function(data){
+                 console.log(data);
+                 location.reload();
+             }
+         })
+     });
+ });
+ $(".actualizars").click(function() {
+     var idpedidoa=$(this).attr("id");
+
+     $('#contact-forms').on('submit', function(e){
+         e.preventDefault();
+         $(".actualizars").prop("disabled",true);
+         var formData = new FormData($("#contact-forms")[0]);
+         $.ajax({
+             url : "controlador/pedidoconfirmado.php?op=actualizar&idpedidoa="+idpedidoa,
+             method : "POST",
+             data: formData,
+             contentType:false,
+             processData:false,
+             success: function(data){
+                 console.log(data);
+                 location.reload();
+             }
+         })
+     });
+ });

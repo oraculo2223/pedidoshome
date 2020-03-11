@@ -1,0 +1,188 @@
+<html>
+
+<head>
+    <title>Pedidos</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,500' rel='stylesheet' type='text/css'>
+    <link href='css/custom.css' rel='stylesheet' type='text/css'>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-xl-8 offset-xl-2">
+                <h1>Pedidos Generales</h1>
+                <form id="contact-form" method="post" action="../vista/pedidogeneralrealizado.php" role="form">
+                    <div class="messages"></div>
+                    <div class="controls">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="comisionista">Comisionista</label>
+                                    <input id="comisionista" type="text" name="comisionista" class="form-control" placeholder="Comisionista" required="required"
+                                        data-error="Comisionista es requerido.">
+                                    <div class="help-block with-errors"></div>
+                                </div>   
+                            </div>    
+                            <div class="col-lg-6"> 
+                                <div class="form-group">
+                                    <label for="nombre">Nombre *</label>
+                                    <input id="nombre" type="text" name="nombre" class="form-control" placeholder="Nombre" required="required"
+                                        data-error="Nombre es requerido.">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="materno">Apellido Materno*</label>
+                                    <input id="materno" type="text" name="materno" class="form-control" placeholder="Apellido Materno" required="required"
+                                        data-error="Apellido Materno es requerido.">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="paterno">Apellido Paterno*</label>
+                                        <input id="paterno" type="text" name="paterno" class="form-control" placeholder="Apellido Paterno" required="required"
+                                            data-error="Apellido Paterno es requerido">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                            </div>
+                            <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="telefono">Telefono*</label>
+                                        <input id="telefono" type="number" name="telefono" class="form-control" placeholder="Telefono" maxlength="10" required="required"
+                                            data-error="Telefono es requerido">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                            </div>
+                            <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="calle">Calle*</label>
+                                        <input id="calle" type="text" name="calle" class="form-control" placeholder="Calle" required="required"
+                                            data-error="calle es requerido">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                            </div>
+                            <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="noexterior">No Exterior*</label>
+                                        <input id="noexterior" type="text" name="noexterior" class="form-control" placeholder="Numero Exterior" required="required"
+                                            data-error="Numero Exterior es requerido">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                            </div>
+                            <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="nointerior">No Interior*</label>
+                                        <input id="nointerior" type="text" name="nointerior" class="form-control" placeholder="Numero Interior" required="required"
+                                            data-error="Numero Interior es requerido">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                            </div>
+                            <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="colonia">Colonia*</label>
+                                        <input id="colonia" type="text" name="colonia" class="form-control" placeholder="Colonia" required="required"
+                                            data-error="Colonia es requerido">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                            </div>
+                            <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="cp">Código Postal*</label>
+                                        <input id="cp" type="number" name="cp" class="form-control" placeholder="Codigo Postal" maxlength="5" required="required"
+                                            data-error="Codigo Postal es requerido">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                            </div>
+                            <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="ciudad">Ciudad*</label>
+                                        <input id="ciudad" type="text" name="ciudad" class="form-control" placeholder="Ciudad" required="required"
+                                            data-error="Ciudad es requerido">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                            </div>
+                            <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="municipio">Municipio o Delegación*</label>
+                                        <input id="municipio" type="text" name="municipio" class="form-control" placeholder="Municipio o Delegacion" required="required"
+                                            data-error="Municipio o Delegacion es requerido">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                            </div>
+                            <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="estado">Estado*</label>
+                                        <input id="estado" type="text" name="estado" class="form-control" placeholder="Estado" required="required"
+                                            data-error="Estado es requerido">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                            </div>
+                            <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="entrecalle">Entre la calle*</label>
+                                        <input id="entrecalle" type="text" name="entrecalle" class="form-control" placeholder="Entre la calle" required="required"
+                                            data-error="Entre la calle es requerido">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                            </div>
+                            <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="ycalle">Y la calle*</label>
+                                        <input id="ycalle" type="text" name="ycalle" class="form-control" placeholder="Y la calle" required="required"
+                                            data-error="Y la calle es requerido">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                            </div>
+                            <div class="col-lg-12">
+                            <div class="form-group">
+                                    <label for="especificaciones">Descripción Especificaciones etc </label>
+                                    <textarea class="form-control" id="especificaciones" name="especificaciones" rows="3"></textarea>
+                            </div>
+                            </div>
+                            <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="monto">Monto a pagar*</label>
+                                        <input id="monto" type="number" name="monto" class="form-control" placeholder="monto" required="required"
+                                            data-error="Monto es requerido">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="g-recaptcha" data-sitekey="6LfsQZAUAAAAAGzpcAri3lP8Q2zR8sApCjLcjaCk"></div>
+                        </div>
+
+
+                        <input type="submit" class="btn btn-success btn-send" value="Realizar pedido">
+
+                        <p class="text-muted">
+                            &copy; 2019 miempresa
+                        </p>
+
+                    </div>
+
+                </form>
+
+            </div>
+            <!-- /.8 -->
+
+        </div>
+        <!-- /.row-->
+
+    </div>
+    <!-- /.container-->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
