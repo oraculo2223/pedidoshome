@@ -1165,7 +1165,7 @@ desired effect
     <footer class="main-footer">
       <!-- To the right -->
       <div class="pull-right hidden-xs">
-        Anything you wantt
+        Anything you want
       </div>
       <!-- Default to the left -->
       <strong>Copyright &copy; 2020 <a href="#">Pedidos</a>.</strong> Todos los derechos.
